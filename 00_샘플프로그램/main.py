@@ -1,9 +1,10 @@
-from PyQt5.QtWidgets import  *
+from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5 import uic
 from PyQt5.QAxContainer import *
 import datetime
 import kiwoomOS as KOS
+
 main_window = uic.loadUiType("main_window.ui")[0]
 
 class MyWindow(QMainWindow, main_window):
@@ -22,27 +23,27 @@ class MyWindow(QMainWindow, main_window):
         self.kos.addOnReceiveCondition(self.kos_OnReceiveCondition)
         self.kos.addOnReceiveRealCondition(self.kos_OnReceiveRealCondition)
 
-        #PyQt GUI Event
+        # PyQt GUI Event
         self.loginButton.clicked.connect(self.login_button_clicked)
         self.accountWindowButton.clicked.connect(self.account_window_button_clicked)
         self.requestTrButton.clicked.connect(self.request_tr_button_clicked)
         self.continuousTrButton.clicked.connect(self.continuous_tr_button_clicked)
         self.setRealButton.clicked.connect(self.set_real_button_clicked)
         self.monitoringButton.clicked.connect(self.monitoring_button_clicked)
-        
+
         self.orderPoisitionComboBox.addItem('매수')
         self.orderPoisitionComboBox.addItem('매도')
 
-        #TR예제 추가
+        # TR예제 추가
         self.trComboBox.addItem('종목기본정보요청_opt10001')
         self.trComboBox.addItem('주식일봉차트조회요청_opt10081')
 
-        #Log ListView Model
+        # Log ListView Model
         self.logModel = QStandardItemModel()
         self.logListView.setModel(self.logModel)
         self.logModel.appendRow(QStandardItem('로그창'))
 
-        #실시간 Log ListView Model
+        # 실시간 Log ListView Model
         self.realLogModel = QStandardItemModel()
         self.realDataListView.setModel(self.realLogModel)
         self.realLogModel.appendRow(QStandardItem('실시간 로그창'))
@@ -102,7 +103,7 @@ class MyWindow(QMainWindow, main_window):
             conditionName = self.conditionList[index]['조건식명']
             self.kos.startConditionMonitoring(conditionName, conditionIndex)
 
-    #로그인 완료 Event
+    # 로그인 완료 Event
     def kos_onLogin(self, stockItemList, conditionList):
         self.writeLog('kos_onLogin()호출 - 로그인 이벤트')
         self.stockItemList = stockItemList
@@ -126,8 +127,7 @@ class MyWindow(QMainWindow, main_window):
         for stockItem in stockItemList:
             model.appendRow(QStandardItem(stockItem['종목명']))
 
-
-    #TR수신 Event
+    # TR수신 Event
     def kos_OnReceiveTr(self, rqName, trCode, hasNext):
         self.writeLog('kos_OnReceiveTr() 호출 - TR데이터 수신')
         self.writeLog('rqName', rqName)
@@ -138,9 +138,9 @@ class MyWindow(QMainWindow, main_window):
             itemCode = self.kos.getTrData(trCode, '종목코드')
             itemName = self.kos.getTrData(trCode, '종목명')
             price = self.kos.getTrData(trCode, '현재가')
-            changeRate = self.kos.getTrData(trCode, '등락율') #등락률이 맞으나 KOA Studio에 명시된 이름을 정확하게 입력해야 함
+            changeRate = self.kos.getTrData(trCode, '등락율')  # 등락률이 맞으나 KOA Studio에 명시된 이름을 정확하게 입력해야 함
             self.writeLog(itemCode, itemName, price, changeRate)
-            
+
         elif rqName == '주식일봉차트조회요청_opt10081':
             itemCount = self.kos.getTrCount(trCode)
             itemCode = self.kos.getTrData(trCode, '종목코드')
@@ -153,13 +153,13 @@ class MyWindow(QMainWindow, main_window):
                 checkPoint = self.kos.getTrData(trCode, '수정주가구분', i)
                 self.writeLog(date, price, volume, checkPoint)
 
-    #실시간 거래 데이터 수신
+    # 실시간 거래 데이터 수신
     def kos_OnReceiveReal(self, itemCode, realData):
         self.writeRealLog('kos_OnReceiveReal() 호출 - 실시간 데이터 수신')
         self.writeRealLog(itemCode)
         self.writeRealLog(realData)
 
-    #기타 실시가 데이터 수신
+    # 기타 실시가 데이터 수신
     def kos_OnReceiveRealExt(self, itemCode, realType):
         self.writeRealLog('kos_OnReceiveRealExt() 호출 - 기타 실시간 데이터 수신')
         self.writeRealLog('realType', realType)
@@ -169,52 +169,53 @@ class MyWindow(QMainWindow, main_window):
             sellEx3 = self.kos.getRealData(itemCode, 143)
             self.writeRealLog(sellEx1, sellEx2, sellEx3)
 
-    #주문 접수 Event
+    # 주문 접수 Event
     def kos_OnAcceptedOrder(self, receipt):
         self.writeRealLog('kos_OnAcceptedOrder() 호출 - 주문접수 결과')
         self.writeRealLog(receipt)
 
-    #주문 체결 Event
+    # 주문 체결 Event
     def kos_OnConcludedOrder(self, conclusion):
         self.writeRealLog('kos_OnConcludedOrder() 호출 - 주문 체결 정보')
         self.writeRealLog(conclusion)
 
-    #실시간 잔고 Event
+    # 실시간 잔고 Event
     def kos_OnReceiveBalance(self, balance):
         self.writeRealLog('kos_kos_OnReceiveBalance() 호출 - 실시간 잔고 전달')
         self.writeRealLog(balance)
 
-    #조건검색 종목 Event
+    # 조건검색 종목 Event
     def kos_OnReceiveCondition(self, condition, itemList):
         self.writeLog('kos_OnReceiveCondition() 호출 - 조건검색 결과')
         self.writeLog('condition', condition)
         self.writeLog('itemList', itemList)
 
-    #실시간 조건검색 Event
+    # 실시간 조건검색 Event
     def kos_OnReceiveRealCondition(self, condition, strCode, type):
         self.writeRealLog('kos_OnReceiveRealCondition() 호출 - 실시간 조건 편입/이탈')
         self.writeRealLog('condition', condition)
         self.writeRealLog('type', type)
         self.writeRealLog('strCode', strCode)
 
-    #LogListView에 로그 출력
+    # LogListView에 로그 출력
     def writeLog(self, *log):
         logText = ''
         for i in log:
             logText += str(i) + ' '
         self.logModel.appendRow(QStandardItem(logText))
-        
-    #realDataListView에 실시간 로그 출력
+
+    # realDataListView에 실시간 로그 출력
     def writeRealLog(self, *log):
         logText = ''
         for i in log:
             logText += str(i) + ' '
         self.realLogModel.appendRow(QStandardItem(logText))
 
+
 if __name__ == "__main__":
     print("프로그램 시작")
     app = QApplication([])
-    myWindow = MyWindow() #클래스를 이용해 객체를 만들고, 생성자(__init__())를 호출
+    myWindow = MyWindow()  # 클래스를 이용해 객체를 만들고, 생성자(__init__())를 호출
     myWindow.show()
     app.exec_()
 

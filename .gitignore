@@ -1,0 +1,7 @@
+*.cgf
+
+build/
+dist/
+kiwoomOS.egg-info/
+
+setup.py
