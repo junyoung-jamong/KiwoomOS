@@ -20,7 +20,7 @@ pip install kiwoomOS
 
 사용하기
 -------
-#### KiwoomOS 객체 생성
+### KiwoomOS 객체 생성
 ```
 from PyQt5.QtWidgets import *
 from PyQt5.QAxContainer import *
@@ -40,13 +40,13 @@ kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
 kwos = KiwoomOS(kiwoom)
 ```
 
-#### 로그인
+### 로그인
 login()함수를 호출하여 키움API 로그인 창을 띄울 수 있습니다.
 ```
 kwos.login()
 ```
 
-예제
+예제:
 ```
 from PyQt5.QtWidgets import *
 from PyQt5.QAxContainer import *
@@ -65,3 +65,10 @@ if __name__ == "__main__":
     kwos.login()
     app.exec_()
 ```
+
+### Sample
+  1. 로그인
+  2. TR 데이터 요청
+  3. 실시간 데이터 처리
+  4. 주문 및 체결/잔고
+  5. 사용자 조건
