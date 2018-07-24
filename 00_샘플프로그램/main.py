@@ -3,8 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5 import uic
 from PyQt5.QAxContainer import *
 import datetime
-import kiwoomOS as KOS
-
+import KWOS
 main_window = uic.loadUiType("main_window.ui")[0]
 
 class MyWindow(QMainWindow, main_window):
@@ -12,7 +11,7 @@ class MyWindow(QMainWindow, main_window):
         super().__init__()
         self.setupUi(self)
         self.kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
-        self.kos = KOS.KiwoomOS(self.kiwoom)
+        self.kos = KWOS.KiwoomOS(self.kiwoom)
         self.kos.addOnLogin(self.kos_onLogin)
         self.kos.addOnReceiveTr(self.kos_OnReceiveTr)
         self.kos.addOnReceiveReal(self.kos_OnReceiveReal)
