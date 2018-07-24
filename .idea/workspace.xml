@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a325586f-a367-4c5b-a980-fa147a800338" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kiwoomOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/kiwoomOS.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_window.ui" beforeDir="false" afterPath="$PROJECT_DIR$/main_window.ui" afterDir="false" />
     </list>
@@ -19,8 +18,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="159" column="19" lean-forward="true" selection-start-line="159" selection-start-column="19" selection-end-line="159" selection-end-column="19" />
+            <state relative-caret-position="76">
+              <caret line="62" column="35" lean-forward="true" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -31,8 +30,8 @@
       <file leaf-file-name="kiwoomOS.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kiwoomOS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="205" column="47" selection-start-line="205" selection-start-column="23" selection-end-line="205" selection-end-column="47" />
+            <state relative-caret-position="191">
+              <caret line="236" column="19" selection-start-line="236" selection-start-column="8" selection-end-line="236" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -48,12 +47,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>startN</find>
-      <find>onReceiveCondition</find>
-      <find>_api_onReceiveTrCondition</find>
-      <find>Koa</find>
-      <find>itemList</find>
-      <find>ItemList</find>
       <find>addOnReceiveCondition</find>
       <find>_onReceiveCondition_observer</find>
       <find>_onReceiveTr_observeraddOnReceiveRealExt</find>
@@ -78,6 +71,12 @@
       <find>kos_OnReceiveBalance</find>
       <find>kos_OnReceiveCondition</find>
       <find>_onReceiveRealCondition_observer</find>
+      <find>stock_item_selection_changed</find>
+      <find>ComboB</find>
+      <find>stockItemListView</find>
+      <find>실시간등록</find>
+      <find>_getRealScreenNumber</find>
+      <find>addRealData</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -91,7 +90,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="100" />
     <option name="y" value="-15" />
     <option name="width" value="1750" />
@@ -106,8 +105,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="JMKWLibrary" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JMKWLibrary" type="462c0819:PsiDirectoryNode" />
+              <item name="KiwoomOS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KiwoomOS" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -175,9 +174,10 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13671875" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32872927" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.21961325" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21685083" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -188,7 +188,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -200,6 +199,23 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3542">
+          <caret line="159" column="19" lean-forward="true" selection-start-line="159" selection-start-column="19" selection-end-line="159" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kiwoomOS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4715">
+          <caret line="205" column="47" selection-start-line="205" selection-start-column="23" selection-end-line="205" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -338,15 +354,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kiwoomOS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="205" column="47" selection-start-line="205" selection-start-column="23" selection-end-line="205" selection-end-column="47" />
+        <state relative-caret-position="191">
+          <caret line="236" column="19" selection-start-line="236" selection-start-column="8" selection-end-line="236" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="159" column="19" lean-forward="true" selection-start-line="159" selection-start-column="19" selection-end-line="159" selection-end-column="19" />
+        <state relative-caret-position="76">
+          <caret line="62" column="35" lean-forward="true" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>

@@ -27,15 +27,25 @@ class MyWindow(QMainWindow, main_window):
         self.accountWindowButton.clicked.connect(self.account_window_button_clicked)
         self.requestTrButton.clicked.connect(self.request_tr_button_clicked)
         self.continuousTrButton.clicked.connect(self.continuous_tr_button_clicked)
+        self.setRealButton.clicked.connect(self.set_real_button_clicked)
         self.monitoringButton.clicked.connect(self.monitoring_button_clicked)
+        
+        self.orderPoisitionComboBox.addItem('매수')
+        self.orderPoisitionComboBox.addItem('매도')
 
         #TR예제 추가
         self.trComboBox.addItem('종목기본정보요청_opt10001')
         self.trComboBox.addItem('주식일봉차트조회요청_opt10081')
 
+        #Log ListView Model
         self.logModel = QStandardItemModel()
         self.logListView.setModel(self.logModel)
         self.logModel.appendRow(QStandardItem('로그창'))
+
+        #실시간 Log ListView Model
+        self.realLogModel = QStandardItemModel()
+        self.realDataListView.setModel(self.realLogModel)
+        self.realLogModel.appendRow(QStandardItem('실시간 로그창'))
 
     def login_button_clicked(self):
         self.writeLog('로그인 버튼 클릭')
@@ -52,6 +62,21 @@ class MyWindow(QMainWindow, main_window):
     def continuous_tr_button_clicked(self):
         self.writeLog('연속조회 버튼 클릭')
         self.requestTR(2)
+
+    def set_real_button_clicked(self):
+        if self.stockItemListView.selectionModel():
+            itemName = self.stockItemListView.selectionModel().selection().indexes()[0].data()
+            stockItem = next(filter(lambda stockItem: stockItem['종목명'] == itemName, self.stockItemList))
+            if stockItem:
+                itemCode = stockItem['종목코드']
+                self.kos.addRealData(itemCode)
+
+    def stock_item_selection_changed(self):
+        itemName = self.stockItemListView.selectionModel().selection().indexes()[0].data()
+        self.orderItemEdit.setText(itemName)
+        stockItem = next(filter(lambda stockItem: stockItem['종목명'] == itemName, self.stockItemList))
+        if stockItem:
+            self.orderItemTextLabel.setText(stockItem['종목코드'])
 
     def requestTR(self, continuous=0):
         rqName = self.trComboBox.currentText()
@@ -94,6 +119,14 @@ class MyWindow(QMainWindow, main_window):
         for account in self.kos.getAccountList():
             self.accountComboBox.addItem(account)
 
+        model = QStandardItemModel()
+        self.stockItemListView.setModel(model)
+        self.stockItemListView.selectionModel().selectionChanged.connect(self.stock_item_selection_changed)
+
+        for stockItem in stockItemList:
+            model.appendRow(QStandardItem(stockItem['종목명']))
+
+
     #TR수신 Event
     def kos_OnReceiveTr(self, rqName, trCode, hasNext):
         self.writeLog('kos_OnReceiveTr() 호출 - TR데이터 수신')
@@ -122,34 +155,34 @@ class MyWindow(QMainWindow, main_window):
 
     #실시간 거래 데이터 수신
     def kos_OnReceiveReal(self, itemCode, realData):
-        self.writeLog('kos_OnReceiveReal() 호출 - 실시간 데이터 수신')
-        self.writeLog(itemCode)
-        self.writeLog(realData)
+        self.writeRealLog('kos_OnReceiveReal() 호출 - 실시간 데이터 수신')
+        self.writeRealLog(itemCode)
+        self.writeRealLog(realData)
 
     #기타 실시가 데이터 수신
     def kos_OnReceiveRealExt(self, itemCode, realType):
-        self.writeLog('kos_OnReceiveRealExt() 호출 - 기타 실시간 데이터 수신')
-        self.writeLog('realType', realType)
+        self.writeRealLog('kos_OnReceiveRealExt() 호출 - 기타 실시간 데이터 수신')
+        self.writeRealLog('realType', realType)
         if realType == '주식당일거래원':
             sellEx1 = self.kos.getRealData(itemCode, 141)
             sellEx2 = self.kos.getRealData(itemCode, 142)
             sellEx3 = self.kos.getRealData(itemCode, 143)
-            self.writeLog(sellEx1, sellEx2, sellEx3)
+            self.writeRealLog(sellEx1, sellEx2, sellEx3)
 
     #주문 접수 Event
     def kos_OnAcceptedOrder(self, receipt):
-        self.writeLog('kos_OnAcceptedOrder() 호출 - 주문접수 결과')
-        self.writeLog(receipt)
+        self.writeRealLog('kos_OnAcceptedOrder() 호출 - 주문접수 결과')
+        self.writeRealLog(receipt)
 
     #주문 체결 Event
     def kos_OnConcludedOrder(self, conclusion):
-        self.writeLog('kos_OnConcludedOrder() 호출 - 주문 체결 정보')
-        self.writeLog(conclusion)
+        self.writeRealLog('kos_OnConcludedOrder() 호출 - 주문 체결 정보')
+        self.writeRealLog(conclusion)
 
     #실시간 잔고 Event
     def kos_OnReceiveBalance(self, balance):
-        self.writeLog('kos_kos_OnReceiveBalance() 호출 - 실시간 잔고 전달')
-        self.writeLog(balance)
+        self.writeRealLog('kos_kos_OnReceiveBalance() 호출 - 실시간 잔고 전달')
+        self.writeRealLog(balance)
 
     #조건검색 종목 Event
     def kos_OnReceiveCondition(self, condition, itemList):
@@ -159,10 +192,10 @@ class MyWindow(QMainWindow, main_window):
 
     #실시간 조건검색 Event
     def kos_OnReceiveRealCondition(self, condition, strCode, type):
-        self.writeLog('kos_OnReceiveRealCondition() 호출 - 실시간 조건 편입/이탈')
-        self.writeLog('condition', condition)
-        self.writeLog('type', type)
-        self.writeLog('strCode', strCode)
+        self.writeRealLog('kos_OnReceiveRealCondition() 호출 - 실시간 조건 편입/이탈')
+        self.writeRealLog('condition', condition)
+        self.writeRealLog('type', type)
+        self.writeRealLog('strCode', strCode)
 
     #LogListView에 로그 출력
     def writeLog(self, *log):
@@ -170,6 +203,13 @@ class MyWindow(QMainWindow, main_window):
         for i in log:
             logText += str(i) + ' '
         self.logModel.appendRow(QStandardItem(logText))
+        
+    #realDataListView에 실시간 로그 출력
+    def writeRealLog(self, *log):
+        logText = ''
+        for i in log:
+            logText += str(i) + ' '
+        self.realLogModel.appendRow(QStandardItem(logText))
 
 if __name__ == "__main__":
     print("프로그램 시작")
