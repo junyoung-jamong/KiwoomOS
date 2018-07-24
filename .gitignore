@@ -1,4 +1,4 @@
-*.cgf
+*.cfg
 
 build/
 dist/
