@@ -12,7 +12,8 @@ kiwoomOS는 파이썬에서 키움OpenAPI가 제공하는 기능을 보다 더 �
 
 다운로드
 --------
-kiwoomOS는 pip를 이용해 설치할 수 있습니다.
+kiwoomOS는 설치하는 가장 간단한 방법은 Python 패키지를 관리하는 PyPI를 사용하는 것입니다.
+다음과 같이 pip 명령어를 이용해 설치할 수 있습니다.
 ```
 pip install kiwoomOS
 ```
@@ -40,11 +41,12 @@ kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
 kwos = KiwoomOS(kiwoom)
 ```
 
-### 로그인
+### 로그인 
 login()함수를 호출하여 키움API 로그인 창을 띄울 수 있습니다.
 ```
 kwos.login()
 ```
+![키움API 로그인창](https://postfiles.pstatic.net/20160917_142/rkdwnsdud555_1474046676886JObIO_PNG/12.png?type=w2)
 
 예제:
 ```
@@ -53,8 +55,7 @@ from PyQt5.QAxContainer import *
 from kiwoomOS.kwos import KiwoomOS
 
 def login_event(stockItemList, conditionItemList):
-    print(stockItemList)
-    print(conditionItemList)
+    print('키움서버와 연결되었습니다.')
 
 if __name__ == "__main__":
     app = QApplication([])
@@ -66,8 +67,9 @@ if __name__ == "__main__":
     app.exec_()
 ```
 
-### Sample
-  1. 로그인
+튜토리얼
+--------
+  1. [로그인](https://github.com/junyoung-jamong/KiwoomOS/tree/master/01_%EB%A1%9C%EA%B7%B8%EC%9D%B8)
   2. TR 데이터 요청
   3. 실시간 데이터 처리
   4. 주문 및 체결/잔고
