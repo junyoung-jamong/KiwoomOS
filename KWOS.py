@@ -1,3 +1,6 @@
+import threading
+from time import sleep
+
 class KiwoomOS:
     stockItemList = []
     conditionList = []
@@ -7,6 +10,8 @@ class KiwoomOS:
     _realScrNumDict = {}
     _screenNumber = 1000
     _realScreenNumber = 9001
+
+    inputValueList = []
 
     def __init__(self, kiwoom):
         self.kiwoom = kiwoom
@@ -29,6 +34,9 @@ class KiwoomOS:
         self._onReceiveBalance_observer = [] #잔고 수신 event
         self._onReceiveCondition_observer = [] #조건검색 수식 event
         self._onReceiveRealCondition_observer = [] #실시간 조건검색 수신 event
+
+        self.requestManager = RequestManager(kiwoom)
+        self.requestManager._run()
 
     def _api_onEventConnect(self, nErrCode):
         if nErrCode == 0:
@@ -207,19 +215,24 @@ class KiwoomOS:
 
     #SetInputValue 호출
     def setInput(self, key, value):
-        self.kiwoom.dynamicCall("SetInputValue(QString, QString)", key, value)
+        self.inputValueList.append({
+            'key': key,
+            'value': value
+        })
 
     #CommRqData 호출
     def requestTr(self, rqName, trCode, prevNext=0):
-        result = self.kiwoom.dynamicCall("CommRqData(QString,QString,int,QString)",
-                                         rqName,
-                                         trCode,
-                                         prevNext,
-                                         self._getScreenNumber())
-        if result == 0:
-            return True
-        else:
-            return False
+        task = {
+            'inputValueList': self.inputValueList,
+            'request': {
+                'rqName': rqName,
+                'trCode': trCode,
+                'prevNext': prevNext,
+                'screenNumber': self._getScreenNumber()
+            }
+        }
+        self.inputValueList = []
+        self.requestManager.requestTrTask(task)
 
     #GetCommData 호출
     def getTrData(self, trCode, key, index=0):
@@ -495,3 +508,35 @@ class KiwoomOS:
     def removeOnReceiveRealCondition(self, func):
         if func in self._onReceiveRealCondition_observer:
             self._onReceiveRealCondition_observer.remove(func)
+
+class RequestManager:
+    taskQueue = []
+
+    def __init__(self, kiwoom, request_delay=0.65):
+        self.kiwoom = kiwoom
+        self.request_delay = request_delay
+        self.workThread = threading.Thread(target=self._work)
+
+    def _work(self):
+        while True:
+            while len(self.taskQueue) > 0:
+                try:
+                    task = self.taskQueue.pop()
+
+                    for input in task['inputValueList']:
+                        self.kiwoom.dynamicCall("SetInputValue(QString, QString)", input['key'], input['value'])
+
+                    request = task['request']
+                    self.kiwoom.dynamicCall('CommRqData(QString, QString, int ,QString)', request['rqName'], request['trCode'], request['prevNext'], request['screenNumber'])
+                    sleep(self.request_delay)
+                except Exception as ex:
+                    print('에러가 발생 했습니다', ex)
+            sleep(0.1)
+
+    def _run(self):
+        self.workThread.start()
+
+    def requestTrTask(self, task):
+        print(str(task))
+        self.taskQueue.insert(0, task)
+

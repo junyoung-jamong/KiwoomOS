@@ -83,15 +83,13 @@ class MyWindow(QMainWindow, main_window):
 
         if rqName == '종목기본정보요청_opt10001':
             self.kos.setInput('종목코드', '005930')
-            rqResult = self.kos.requestTr('종목기본정보요청_opt10001', 'opt10001', continuous)
-            self.writeLog(rqName, '요청 시도 결과 =', rqResult)
+            self.kos.requestTr('종목기본정보요청_opt10001', 'opt10001', continuous)
 
         elif rqName == '주식일봉차트조회요청_opt10081':
             self.kos.setInput('종목코드', '005930')
             self.kos.setInput('기준일자', datetime.datetime.today().strftime('%Y%m%d'))
             self.kos.setInput('수정주가구분', '1')
-            rqResult = self.kos.requestTr('주식일봉차트조회요청_opt10081', 'opt10081', continuous)
-            self.writeLog(rqName, '요청 시도 결과 =', rqResult)
+            self.kos.requestTr('주식일봉차트조회요청_opt10081', 'opt10081', continuous)
 
     def monitoring_button_clicked(self):
         self.writeLog('조건검색 버튼 클릭')
