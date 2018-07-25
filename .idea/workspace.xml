@@ -15,11 +15,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="KWOS.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KWOS.py">
+      <file leaf-file-name="requestTr.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/02_데이터조회/requestTr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1572">
-              <caret line="397" column="25" selection-start-line="397" selection-start-column="8" selection-end-line="397" selection-end-column="25" />
+            <state relative-caret-position="253">
+              <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -27,8 +30,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/00_샘플프로그램/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="42" column="53" lean-forward="true" selection-start-line="39" selection-start-column="8" selection-end-line="42" selection-end-column="53" />
+            <state relative-caret-position="2070">
+              <caret line="90" column="82" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="82" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -36,14 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/01_로그인/login.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="44" column="47" lean-forward="true" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="69">
+              <caret line="3" column="32" lean-forward="true" selection-end-line="64" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -59,18 +59,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addOnReceiveCondition</find>
-      <find>_onReceiveCondition_observer</find>
-      <find>_onReceiveTr_observeraddOnReceiveRealExt</find>
-      <find>addOnReceiveRealExt</find>
-      <find>_onReceiveRealExt_observer</find>
       <find>OnReceiveTr</find>
       <find>getTrData</find>
       <find>writeLog</find>
       <find>loginButton</find>
       <find>login_button_clicked</find>
       <find>CommRq</find>
-      <find>kos_OnReceiveTr</find>
       <find>OnReceiveReal</find>
       <find>_onReceiveReal_observer</find>
       <find>kos_OnReceiveReal</find>
@@ -83,12 +77,18 @@
       <find>kos_OnReceiveBalance</find>
       <find>kos_OnReceiveCondition</find>
       <find>_onReceiveRealCondition_observer</find>
-      <find>stock_item_selection_changed</find>
       <find>ComboB</find>
       <find>stockItemListView</find>
       <find>실시간등록</find>
       <find>_getRealScreenNumber</find>
       <find>addRealData</find>
+      <find>stock_item_selection_changed</find>
+      <find>kwos_on_receive_tr</find>
+      <find>request_tr_button_clicked</find>
+      <find>kos_OnReceiveTr</find>
+      <find>기준일자</find>
+      <find>request_balance_button_clicked</find>
+      <find>request_chart_button_clicked</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -104,14 +104,15 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/00_샘플프로그램/main.py" />
         <option value="$PROJECT_DIR$/01_로그인/login.py" />
+        <option value="$PROJECT_DIR$/02_데이터조회/requestTr.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2503" />
-    <option name="y" value="-9" />
-    <option name="width" value="1750" />
-    <option name="height" value="1102" />
+    <option name="x" value="-425" />
+    <option name="y" value="-19" />
+    <option name="width" value="1937" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -131,7 +132,17 @@
             <path>
               <item name="KiwoomOS" type="b2602c69:ProjectViewProjectNode" />
               <item name="KiwoomOS" type="462c0819:PsiDirectoryNode" />
+              <item name="00_샘플프로그램" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KiwoomOS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KiwoomOS" type="462c0819:PsiDirectoryNode" />
               <item name="01_로그인" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KiwoomOS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KiwoomOS" type="462c0819:PsiDirectoryNode" />
+              <item name="02_데이터조회" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -161,7 +172,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.login">
+  <component name="RunManager" selected="Python.requestTr">
     <configuration name="login" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JMKWLibrary" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -216,13 +227,33 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="requestTr" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="JMKWLibrary" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/02_데이터조회" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/02_데이터조회/requestTr.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <list>
       <item itemvalue="Python.main" />
       <item itemvalue="Python.main (1)" />
       <item itemvalue="Python.login" />
+      <item itemvalue="Python.requestTr" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.requestTr" />
         <item itemvalue="Python.login" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.main" />
@@ -243,18 +274,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13645834" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17057292" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20718232" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.20851064" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -273,6 +305,23 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/KWOS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9131">
+          <caret line="397" column="25" selection-start-line="397" selection-start-column="8" selection-end-line="397" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/00_샘플프로그램/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="42" column="53" lean-forward="true" selection-start-line="39" selection-start-column="8" selection-end-line="42" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/KWOS.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -510,27 +559,34 @@
     <entry file="file://$PROJECT_DIR$/setup.py" />
     <entry file="file://$PROJECT_DIR$/kiwoomOS/__init__.py" />
     <entry file="file://$PROJECT_DIR$/kiwoomOS/kwos.py" />
+    <entry file="file://$PROJECT_DIR$/KWOS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="349" column="37" selection-start-line="349" selection-start-column="37" selection-end-line="349" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01_로그인/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="32" lean-forward="true" selection-end-line="64" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/00_샘플프로그램/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="42" column="53" lean-forward="true" selection-start-line="39" selection-start-column="8" selection-end-line="42" selection-end-column="53" />
+        <state relative-caret-position="2070">
+          <caret line="90" column="82" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="82" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KWOS.py">
+    <entry file="file://$PROJECT_DIR$/02_데이터조회/requestTr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1572">
-          <caret line="397" column="25" selection-start-line="397" selection-start-column="8" selection-end-line="397" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01_로그인/login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="44" column="47" lean-forward="true" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
+        <state relative-caret-position="253">
+          <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
