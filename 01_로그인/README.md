@@ -79,6 +79,12 @@ kwos.getLoginState()
 ```
 > True : 연결 | False : 연결안됨
 
+#### 계좌비밀번호 창 호출
+```
+kwos.showAccountWindow()
+```
+![계좌비밀번호 창](https://postfiles.pstatic.net/MjAxODA3MjVfMTcg/MDAxNTMyNDk1NjU0NDY0.Ti1Eza9o7J6Q9f54WpqEyToomunKEkorTIOKMsXMCcEg.zgyIPGfYZSPSIK_Y_cwgto-FnRZpVtbTYdAJIMheEDcg.PNG.rkdwnsdud555/ing.png?type=w773)
+
 #### 서버 구분
 ```
 kwos.getServerState()
