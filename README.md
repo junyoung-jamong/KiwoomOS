@@ -12,7 +12,7 @@ kiwoomOS는 파이썬에서 키움OpenAPI가 제공하는 기능을 보다 더 �
 
 다운로드
 --------
-kiwoomOS는 설치하는 가장 간단한 방법은 Python 패키지를 관리하는 PyPI를 사용하는 것입니다.
+kiwoomOS를 설치하는 가장 간단한 방법은 Python 패키지를 관리하는 PyPI를 사용하는 것입니다.
 다음과 같이 pip 명령어를 이용해 설치할 수 있습니다.
 ```
 pip install kiwoomOS
