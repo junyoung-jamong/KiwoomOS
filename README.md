@@ -1,12 +1,14 @@
 # kiwoomOS
-kiwoomOS는 파이썬에서 키움OpenAPI가 제공하는 기능을 보다 더 쉽게 사용할 수 있도록 도와주는 모듈입니다. kiwoomOS를 사용하기 위해서는 키움OpenAPI를 사용하기 위한 준비가 선행되어야 합니다.  
+kiwoomOS는 파이썬에서 키움OpenAPI가 제공하는 기능을 보다 더 쉽게 사용할 수 있도록 돕는 모듈입니다. 
+
+kiwoomOS를 사용하기 위해서는 키움OpenAPI를 사용하기 위한 준비가 선행되어야 합니다.  
 
 #### 키움OpenAPI를 사용하기 위한 조건
   1. 키움증권 계좌 보유 및 키움증권 아이디 등록
   2. Open API 사용 신청
   3. 키움OpenAPI+ 모듈 설치
  
-키움OpenAPI 신청/다운로드 : https://www3.kiwoom.com/nkw.templateFrameSet.do?m=m1408000000
+[키움OpenAPI 신청/다운로드](https://www3.kiwoom.com/nkw.templateFrameSet.do?m=m1408000000)
 
 
 
