@@ -3,6 +3,27 @@
 
 로그인창을 이용하여 키움서버에 접속할 수 있습니다.
 
+로그인 프로세스 이해하기
+----------------------
+아래는 키움OpenAPI에서 로그인이 진행되는 절차입니다.  
+
+#### 1.로그인 창 호출
+![로그인 프로세스1](https://postfiles.pstatic.net/MjAxODA3MjVfODYg/MDAxNTMyNDk4ODY2OTk1.cRjLYGqlPDpbbQjmJXpkncs8eMWuO2lwitmSskTu9yEg.qK35IDoEAWiRvINEKw4pD6J1M1U8VPe54qKIW7llr7Eg.PNG.rkdwnsdud555/1.png?type=w773)
+>사용자 작성 코드에서 api함수(CommConnect())를 호출하여 로그인 창을 띄울 수 있습니다. 
+>kiwoomOS를 이용할 경우 login()함수를 호출하면 됩니다.
+
+#### 2.로그인 시도
+![로그인 프로세스2](https://postfiles.pstatic.net/MjAxODA3MjVfMjA0/MDAxNTMyNDk4ODY3MDc0.l_JvWKt8fkJi7IUTg8nhat53uSdTYutwI0pYdrH1aSkg.Ds1z5hQ1RwqATH5m0e4aIEEQecS9X52mUnr_fdMBiesg.PNG.rkdwnsdud555/2.png?type=w773)
+>앞에서 실행한 로그인 창에서 로그인 버튼을 통해 키움서버에 접속을 시도합니다.
+
+#### 3.로그인 결과 전달
+![로그인 프로세스3](https://postfiles.pstatic.net/MjAxODA3MjVfMTgg/MDAxNTMyNDk4ODY3MDY4.4Y9SnXyOF34t6zBkSzX_7x7lhEZ4x2FSkTbI5SlV5OMg.DBYEfXxtxJ0ehZ1OTMTmZzztwvr1LgK2SdRXIpXoIP8g.PNG.rkdwnsdud555/3.png?type=w773)
+>키움서버가 ocx로 로그인 시도에 대한 결과를 전달합니다. ocx와 키움서버 사이에서 진행되는 절차로 별도의 코드를 작성할 필요는 없습니다.
+
+#### 4.로그인 결과 Event
+![로그인 프로세스4](https://postfiles.pstatic.net/MjAxODA3MjVfMTI2/MDAxNTMyNDk4ODY3MDYx.Pv460zyo-e9SmS7u2eFosxbugvCdATuyC6X3qPY2_k0g.2Z2zt95QEVVWH3Qrd0GH9dyBcJ5xKLHuV8qBiqg8rycg.PNG.rkdwnsdud555/4.png?type=w773)
+>ocx는 키움서버로부터 받은 로그인 시도 결과를 사용자 작성코드로 전달하기 위해 Event함수를 호출합니다.
+
 로그인 창 호출하기
 ----------------
 login()함수를 이용하여 키움OpenAPI의 로그인창을 호출할 수 있습니다.
