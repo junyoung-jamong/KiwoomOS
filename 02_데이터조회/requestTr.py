@@ -20,6 +20,7 @@ class MyWindow(QMainWindow, main_window):
         self.loginButton.clicked.connect(self.login_button_clicked) #로그인 버튼 클릭 Event 등록
         self.requestStockInfoButton.clicked.connect(self.request_stock_info_button_clicked) #종목기본정보 버튼 클릭 Event 등록
         self.requestChartButton.clicked.connect(self.request_chart_button_clicked) #일봉데이터 버튼 클릭 Event 등록
+        self.requestContinuousButton.clicked.connect(self.request_continuous_button_clicked) #일봉데이터 연속조회 버튼 클릭 Event 등록
         self.requestBalanceButton.clicked.connect(self.request_balance_button_clicked) #잔고조회 버튼 클릭 Event 등록
 
         # TR ListView Model
@@ -45,6 +46,16 @@ class MyWindow(QMainWindow, main_window):
             self.kwos.setInput('기준일자', datetime.today().strftime('%Y%m%d'))
             self.kwos.setInput('수정주가구분', '1')
             self.kwos.requestTr('주식일봉차트조회요청', 'opt10081')
+        else:
+            QMessageBox.about(self, "종목 선택", "종목을 선택해주세요.")
+
+    def request_continuous_button_clicked(self):
+        itemCode = self.get_selection_changed()
+        if itemCode:
+            self.kwos.setInput('종목코드', itemCode)
+            self.kwos.setInput('기준일자', datetime.today().strftime('%Y%m%d'))
+            self.kwos.setInput('수정주가구분', '1')
+            self.kwos.requestTr('주식일봉차트조회요청', 'opt10081', 2) #연속조회 시 3번째 파라미터에 2를 입력
         else:
             QMessageBox.about(self, "종목 선택", "종목을 선택해주세요.")
 

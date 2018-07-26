@@ -76,7 +76,7 @@
    <widget class="QPushButton" name="requestBalanceButton">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>980</x>
       <y>100</y>
       <width>121</width>
       <height>41</height>
@@ -120,6 +120,19 @@
     </property>
     <property name="text">
      <string>계좌번호</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="requestContinuousButton">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>100</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>일봉연속조회</string>
     </property>
    </widget>
   </widget>

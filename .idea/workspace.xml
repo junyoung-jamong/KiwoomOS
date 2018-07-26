@@ -4,6 +4,8 @@
     <list default="true" id="a325586f-a367-4c5b-a980-fa147a800338" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/00_샘플프로그램/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/00_샘플프로그램/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/02_데이터조회/main_window.ui" beforeDir="false" afterPath="$PROJECT_DIR$/02_데이터조회/main_window.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/02_데이터조회/requestTr.py" beforeDir="false" afterPath="$PROJECT_DIR$/02_데이터조회/requestTr.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KWOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/KWOS.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,25 +17,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/00_샘플프로그램/main.py">
+      <file leaf-file-name="KWOS.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/KWOS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="25" column="67" lean-forward="true" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
+            <state relative-caret-position="92">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
               <folding>
-                <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KWOS.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/KWOS.py">
+      <file leaf-file-name="kwos.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/kiwoomOS/kwos.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="523" column="47" lean-forward="true" selection-start-line="523" selection-start-column="47" selection-end-line="523" selection-end-column="47" />
+            <state relative-caret-position="185">
+              <caret line="240" column="37" lean-forward="true" selection-start-line="240" selection-start-column="37" selection-end-line="240" selection-end-column="37" />
               <folding>
-                <element signature="e#0#16#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requestTr.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/02_데이터조회/requestTr.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="57" column="84" selection-start-line="57" selection-start-column="84" selection-end-line="57" selection-end-column="84" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -50,12 +64,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ComboB</find>
-      <find>stockItemListView</find>
-      <find>실시간등록</find>
-      <find>_getRealScreenNumber</find>
-      <find>addRealData</find>
-      <find>stock_item_selection_changed</find>
       <find>kwos_on_receive_tr</find>
       <find>request_tr_button_clicked</find>
       <find>kos_OnReceiveTr</find>
@@ -67,7 +75,6 @@
       <find>setIn</find>
       <find>CommRQ</find>
       <find>inputValue</find>
-      <find>inputValueList</find>
       <find>requestTR</find>
       <find>SetInputValue</find>
       <find>commRqData</find>
@@ -75,11 +82,18 @@
       <find>taskQueue</find>
       <find>kwos</find>
       <find>kos.requestTr</find>
-      <find>requestTr</find>
       <find>requestManager</find>
       <find>_work</find>
-      <find>RequestManager</find>
       <find>requestTrTask</find>
+      <find>_tr_request_task</find>
+      <find>threadEvent</find>
+      <find>kiwoom</find>
+      <find>self</find>
+      <find>RequestManager</find>
+      <find>실시간</find>
+      <find>set_real_button_clicked</find>
+      <find>requestTr</find>
+      <find>inputValueList</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -93,10 +107,10 @@
         <option value="$PROJECT_DIR$/setup.cfg" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/01_로그인/login.py" />
-        <option value="$PROJECT_DIR$/02_데이터조회/requestTr.py" />
-        <option value="$PROJECT_DIR$/kiwoomOS/kwos.py" />
         <option value="$PROJECT_DIR$/00_샘플프로그램/main.py" />
+        <option value="$PROJECT_DIR$/02_데이터조회/requestTr.py" />
         <option value="$PROJECT_DIR$/KWOS.py" />
+        <option value="$PROJECT_DIR$/kiwoomOS/kwos.py" />
       </list>
     </option>
   </component>
@@ -121,6 +135,11 @@
             <path>
               <item name="KiwoomOS" type="b2602c69:ProjectViewProjectNode" />
               <item name="KiwoomOS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KiwoomOS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KiwoomOS" type="462c0819:PsiDirectoryNode" />
+              <item name="kiwoomOS" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -149,7 +168,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main (1)">
+  <component name="RunManager" selected="Python.requestTr">
     <configuration name="login" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JMKWLibrary" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -230,8 +249,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.requestTr" />
+        <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.login" />
         <item itemvalue="Python.main" />
       </list>
@@ -252,13 +271,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13645834" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13645834" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.44361702" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.12340426" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -281,6 +301,26 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/00_샘플프로그램/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="25" column="67" lean-forward="true" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KWOS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12006">
+          <caret line="523" column="47" lean-forward="true" selection-start-line="523" selection-start-column="47" selection-end-line="523" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/02_데이터조회/requestTr.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -305,9 +345,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
           <caret line="3" column="32" lean-forward="true" selection-end-line="64" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -574,33 +611,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-546">
           <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kiwoomOS/kwos.py">
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/1901266482/PyQt5/QtCore/QThread.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8262">
-          <caret line="433" lean-forward="true" selection-start-line="433" selection-end-line="433" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/02_데이터조회/requestTr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3007">
-          <caret line="5" column="29" lean-forward="true" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="304">
+          <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/00_샘플프로그램/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="25" column="67" lean-forward="true" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
+        <state relative-caret-position="215">
+          <caret line="62" column="35" lean-forward="true" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02_데이터조회/requestTr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="57" column="84" selection-start-line="57" selection-start-column="84" selection-end-line="57" selection-end-column="84" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
@@ -609,10 +643,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/KWOS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="523" column="47" lean-forward="true" selection-start-line="523" selection-start-column="47" selection-end-line="523" selection-end-column="47" />
+        <state relative-caret-position="92">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kiwoomOS/kwos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="240" column="37" lean-forward="true" selection-start-line="240" selection-start-column="37" selection-end-line="240" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>

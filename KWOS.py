@@ -1,5 +1,7 @@
-import threading
-from time import sleep
+from PyQt5.QtCore import QThread
+from PyQt5.QtCore import QWaitCondition
+from PyQt5.QtCore import QMutex
+from PyQt5.QtCore import pyqtSignal
 
 class KiwoomOS:
     stockItemList = []
@@ -35,8 +37,17 @@ class KiwoomOS:
         self._onReceiveCondition_observer = [] #조건검색 수식 event
         self._onReceiveRealCondition_observer = [] #실시간 조건검색 수신 event
 
-        self.requestManager = RequestManager(kiwoom)
-        self.requestManager._run()
+        self.requestManager = _RequestManager()
+        self.requestManager.threadEvent.connect(self._tr_request_task)
+        self.requestManager.start()
+
+    def _tr_request_task(self, task):
+        for input in task['inputValueList']:
+            self.kiwoom.dynamicCall("SetInputValue(QString, QString)", input['key'], input['value'])
+
+        request = task['request']
+        self.kiwoom.dynamicCall('CommRqData(QString, QString, int ,QString)', request['rqName'], request['trCode'],
+                                request['prevNext'], request['screenNumber'])
 
     def _api_onEventConnect(self, nErrCode):
         if nErrCode == 0:
@@ -509,34 +520,37 @@ class KiwoomOS:
         if func in self._onReceiveRealCondition_observer:
             self._onReceiveRealCondition_observer.remove(func)
 
-class RequestManager:
+class _RequestManager(QThread):
+    threadEvent = pyqtSignal(dict)
     taskQueue = []
 
-    def __init__(self, kiwoom, request_delay=0.65):
-        self.kiwoom = kiwoom
+    def __init__(self, request_delay=650):
+        QThread.__init__(self)
         self.request_delay = request_delay
-        self.workThread = threading.Thread(target=self._work)
+        self.cond = QWaitCondition()
+        self.mutex = QMutex()
+        self._status = True
 
-    def _work(self):
-        while True:
+    def __del__(self):
+        self.wait()
+
+    def run(self):
+        while self._status:
             while len(self.taskQueue) > 0:
                 try:
+                    self.mutex.lock()
                     task = self.taskQueue.pop()
+                    self.mutex.unlock()
 
-                    for input in task['inputValueList']:
-                        self.kiwoom.dynamicCall("SetInputValue(QString, QString)", input['key'], input['value'])
+                    self.threadEvent.emit(task)
 
-                    request = task['request']
-                    self.kiwoom.dynamicCall('CommRqData(QString, QString, int ,QString)', request['rqName'], request['trCode'], request['prevNext'], request['screenNumber'])
-                    sleep(self.request_delay)
+                    self.msleep(self.request_delay)
                 except Exception as ex:
                     print('에러가 발생 했습니다', ex)
-            sleep(0.1)
-
-    def _run(self):
-        self.workThread.start()
+            self.msleep(150)
 
     def requestTrTask(self, task):
-        print(str(task))
+        self.mutex.lock()
         self.taskQueue.insert(0, task)
+        self.mutex.unlock()
 

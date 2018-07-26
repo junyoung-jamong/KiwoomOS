@@ -64,8 +64,12 @@ class MyWindow(QMainWindow, main_window):
         self.requestTR(2)
 
     def set_real_button_clicked(self):
-        if self.stockItemListView.selectionModel():
-            itemName = self.stockItemListView.selectionModel().selection().indexes()[0].data()
+        if not self.stockItemListView.selectionModel(): #종목 리스트 모델 설정 전일 경우
+            return None
+
+        selectedItem = self.stockItemListView.selectionModel().selection().indexes()
+        if (selectedItem):
+            itemName = selectedItem[0].data()
             stockItem = next(filter(lambda stockItem: stockItem['종목명'] == itemName, self.stockItemList))
             if stockItem:
                 itemCode = stockItem['종목코드']
