@@ -4,6 +4,7 @@ from PyQt5 import uic
 from PyQt5.QAxContainer import *
 import datetime
 import KWOS
+
 main_window = uic.loadUiType("main_window.ui")[0]
 
 class MyWindow(QMainWindow, main_window):

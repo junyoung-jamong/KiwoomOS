@@ -3,6 +3,5 @@
 build/
 dist/
 kiwoomOS.egg-info/
-kiwoomOS/
 
 setup.py
