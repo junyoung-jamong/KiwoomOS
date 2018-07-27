@@ -72,7 +72,7 @@ if __name__ == "__main__":
 튜토리얼
 --------
   1. [로그인](https://github.com/junyoung-jamong/KiwoomOS/tree/master/01_%EB%A1%9C%EA%B7%B8%EC%9D%B8)
-  2. TR 데이터 요청
+  2. [TR 데이터 요청](https://github.com/junyoung-jamong/KiwoomOS/tree/master/02_%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A1%B0%ED%9A%8C)
   3. 실시간 데이터 처리
   4. 주문 및 체결/잔고
   5. 사용자 조건
