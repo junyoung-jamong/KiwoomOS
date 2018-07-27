@@ -138,23 +138,28 @@ rqName = 체결정보
 
 관련 함수
 --------
-###
+#### INPUT값 등록
 ```
 kwos.setInput(key, value)
 ```
 
+#### TR데이터 요청
 ```
-kwos.requestTr(rqName, optCode)
+kwos.requestTr(rqName, optCode, prevNext=0)
+```
+연속조회 시 prevNext에 2를 전달하면 됩니다.
+
+#### 수신 TR데이터 접근
+```
+kwos.getTrData(trCode, key, index=0)
 ```
 
-```
-kwos.getTrData(trCode, key)
-```
-
+#### 수신 TR데이터(멀티데이터) 개수
 ```
 kwos.getTrCount(trCode)
 ```
 
+#### TR데이터 수신 Event 등록
 ```
 kwos.addOnReceiveTr(func)
 ```
