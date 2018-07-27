@@ -61,6 +61,22 @@ if __name__ == "__main__":
 
 TR데이터 수신 Event
 ------------------
+requestTr()함수를 호출하여 키움증권 서버에 TR데이터를 요청한 후 서버로부터 데이터가 전달되었을 때 OnReceiveTR() 이벤트가 호출됩니다.
+
+이벤트 함수는 addOnReceiveTr() 함수를 통해 등록할 수 있습니다.
+```
+def kwos_on_receive_tr(self, rqName, trCode, hasNext):
+    print('tr데이터를 수신하였습니다.')
+    
+kwos.addOnReceiveTr(kwos_on_receive_tr)
+```
+TR데이터 수신 이벤트는 호출 시 3개의 값이 전달됩니다.
+> * 사용자 구분자(rqName)
+>    * requestTr()함수 호출 시 첫 번째 인자로 전달한 사용자 구분자로 어떠한 TR요청에 의해 OnReceiveTR()이벤트가 호출되었는지 구분 목적으로 사용됩니다.
+> * optCode(trCode)
+>    * 요청한 TR데이터의 optCode 입니다.
+> * 잔여 연속데이터 여부(hasNext)
+>    * 멀티데이터의 경우 1회 요청에 받아올 수 있는 데이터의 수가 제한되어있습니다. 특히 차트데이터의 경우에 여러차례 데이터를 수신해야합니다. 이때 남은 데이터가 존재할 경우 hasNext는 True를 전달합니다.
 
 전체코드:
 ```
@@ -122,6 +138,26 @@ rqName = 체결정보
 
 관련 함수
 --------
+###
+```
+kwos.setInput(key, value)
+```
+
+```
+kwos.requestTr(rqName, optCode)
+```
+
+```
+kwos.getTrData(trCode, key)
+```
+
+```
+kwos.getTrCount(trCode)
+```
+
+```
+kwos.addOnReceiveTr(func)
+```
 
 샘플 프로그램(requestTr.py)
 --------------------------
