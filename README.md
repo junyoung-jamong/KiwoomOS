@@ -69,6 +69,62 @@ if __name__ == "__main__":
     app.exec_()
 ```
 
+### 코드 간결화
+* 기존 데이터 조회 코드
+```
+kiwoom.dynamicCall("SetInputValue(QString, QString)", '종목코드', '005930')
+kiwoom.dynamicCall("CommRqData(QString,QString,int,QString)", 
+                                              '종목기본정보요청', 
+                                              'opt10001', 
+                                              0, 
+                                              self._getScreenNumber())
+```
+
+>간결화된 코드
+```
+kwos.setInput('종목코드', '005930')
+kwos.requestTr('종목기본정보요청', 'opt10001')
+```
+
+- - - 
+
+* 기존 사용자조건식리스트 호출과정
+```
+def _api_onEventConnect(self, nErrCode):
+    self.kiwoom.dynamicCall("GetConditionLoad()") #사용자 조건식 리스트 요청
+    
+def _api_onReceiveConditionVer(self, lRet, msg):
+    conditions = self.kiwoom.dynamicCall("GetConditionNameList()")
+    conditions = conditions[:-1]
+    conditionArray = conditions.split(';')
+  
+    conditionList = []
+    for condition in conditionArray:
+        conditionInfo = condition.split('^')
+        conditionList.append({
+            '조건식인덱스': int(conditionInfo[0]),
+            '조건식명': conditionInfo[1]
+        })
+    
+    print(conditionList)
+
+kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
+kiwoom.OnEventConnect.connect(self._api_onEventConnect)
+kiwoom.OnReceiveConditionVer.connect(self._api_onReceiveConditionVer)
+kiwoom.dynamicCall("CommConnect()")
+```
+
+>간결화된 코드
+```
+def kos_onLogin(self, stockItemList, conditionList):
+    print(conditionList)
+
+kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
+kwos = KWOS.KiwoomOS(kiwoom)
+kwos.addOnLogin(kos_onLogin)
+kwos.login()
+```
+
 튜토리얼
 --------
   1. [로그인](https://github.com/junyoung-jamong/KiwoomOS/tree/master/01_%EB%A1%9C%EA%B7%B8%EC%9D%B8)
