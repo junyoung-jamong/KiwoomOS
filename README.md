@@ -70,7 +70,7 @@ if __name__ == "__main__":
 ```
 
 ### 코드 간결화
-* 기존 데이터 조회 코드
+> 기존 데이터 조회 코드
 ```
 kiwoom.dynamicCall("SetInputValue(QString, QString)", '종목코드', '005930')
 kiwoom.dynamicCall("CommRqData(QString,QString,int,QString)", 
@@ -80,7 +80,7 @@ kiwoom.dynamicCall("CommRqData(QString,QString,int,QString)",
                                               _getScreenNumber())
 ```
 
->간결화된 코드
+> **간결화된 코드**
 ```
 kwos.setInput('종목코드', '005930')
 kwos.requestTr('종목기본정보요청', 'opt10001')
@@ -88,7 +88,7 @@ kwos.requestTr('종목기본정보요청', 'opt10001')
 
 - - - 
 
-* 기존 사용자조건식리스트 호출과정
+> 기존 사용자조건식리스트 호출과정
 ```
 def _api_onEventConnect(nErrCode):
     kiwoom.dynamicCall("GetConditionLoad()") #사용자 조건식 리스트 요청
@@ -114,7 +114,7 @@ kiwoom.OnReceiveConditionVer.connect(_api_onReceiveConditionVer)
 kiwoom.dynamicCall("CommConnect()")
 ```
 
->간결화된 코드
+> **간결화된 코드**
 ```
 def kos_onLogin(stockItemList, conditionList):
     print(conditionList)
