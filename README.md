@@ -77,7 +77,7 @@ kiwoom.dynamicCall("CommRqData(QString,QString,int,QString)",
                                               '종목기본정보요청', 
                                               'opt10001', 
                                               0, 
-                                              self._getScreenNumber())
+                                              _getScreenNumber())
 ```
 
 >간결화된 코드
@@ -90,11 +90,11 @@ kwos.requestTr('종목기본정보요청', 'opt10001')
 
 * 기존 사용자조건식리스트 호출과정
 ```
-def _api_onEventConnect(self, nErrCode):
-    self.kiwoom.dynamicCall("GetConditionLoad()") #사용자 조건식 리스트 요청
+def _api_onEventConnect(nErrCode):
+    kiwoom.dynamicCall("GetConditionLoad()") #사용자 조건식 리스트 요청
     
-def _api_onReceiveConditionVer(self, lRet, msg):
-    conditions = self.kiwoom.dynamicCall("GetConditionNameList()")
+def _api_onReceiveConditionVer(lRet, msg):
+    conditions = kiwoom.dynamicCall("GetConditionNameList()")
     conditions = conditions[:-1]
     conditionArray = conditions.split(';')
   
@@ -109,14 +109,14 @@ def _api_onReceiveConditionVer(self, lRet, msg):
     print(conditionList)
 
 kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
-kiwoom.OnEventConnect.connect(self._api_onEventConnect)
-kiwoom.OnReceiveConditionVer.connect(self._api_onReceiveConditionVer)
+kiwoom.OnEventConnect.connect(_api_onEventConnect)
+kiwoom.OnReceiveConditionVer.connect(_api_onReceiveConditionVer)
 kiwoom.dynamicCall("CommConnect()")
 ```
 
 >간결화된 코드
 ```
-def kos_onLogin(self, stockItemList, conditionList):
+def kos_onLogin(stockItemList, conditionList):
     print(conditionList)
 
 kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
