@@ -148,7 +148,6 @@ class MyWindow(QMainWindow, main_window):
                 self.trDataModel.appendRow(QStandardItem('손익율 = ' + profitRate))
                 self.trDataModel.appendRow(QStandardItem('------------------------'))
 
-
     #종목 리스트 뷰에서 선택된 종목의 종목코드를 구하는 함수
     def get_selection_changed(self):
         if not self.stockItemListView.selectionModel(): #종목 리스트 모델 설정 전일 경우

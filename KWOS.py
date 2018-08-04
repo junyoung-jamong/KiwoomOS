@@ -368,6 +368,11 @@ class KiwoomOS:
         if self.getLoginState():
             return self.stockItemList
 
+    #종목명 요청
+    def getStockItemName(self, itemCode):
+        if self.getLoginState():
+            return self.kiwoom.dynamicCall("GetMasterCodeName(QString)", itemCode)
+
     #조건식리스트 요청
     def getConditionList(self):
         if self.getLoginState():

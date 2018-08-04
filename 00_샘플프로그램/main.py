@@ -108,6 +108,7 @@ class MyWindow(QMainWindow, main_window):
     # 로그인 완료 Event
     def kos_onLogin(self, stockItemList, conditionList):
         self.writeLog('kos_onLogin()호출 - 로그인 이벤트')
+        print(conditionList)
         self.stockItemList = stockItemList
         self.conditionList = conditionList
 
