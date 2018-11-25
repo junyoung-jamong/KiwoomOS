@@ -71,15 +71,18 @@ class KiwoomOS:
 
     def _api_onReceiveConditionVer(self, lRet, msg):
         conditions = self.kiwoom.dynamicCall("GetConditionNameList()")
-        conditions = conditions[:-1]
-        conditionArray = conditions.split(';')
+        if len(conditions) > 0:
+            conditions = conditions[:-1]
+            conditionArray = conditions.split(';')
 
-        for condition in conditionArray:
-            conditionInfo = condition.split('^')
-            self.conditionList.append({
-                '조건식인덱스': int(conditionInfo[0]),
-                '조건식명': conditionInfo[1]
-            })
+            for condition in conditionArray:
+                conditionInfo = condition.split('^')
+                self.conditionList.append({
+                    '조건식인덱스': int(conditionInfo[0]),
+                    '조건식명': conditionInfo[1]
+                })
+        else:
+            self.conditionList = []
 
         for event_func in self._onLogin_observer:
             event_func(self.stockItemList, self.conditionList)

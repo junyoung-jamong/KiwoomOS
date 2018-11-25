@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5 import uic
 from PyQt5.QAxContainer import *
-from kiwoomOS.kwos import *
+from kiwoomOS.kwos import KiwoomOS
 
 from datetime import datetime
 
@@ -73,6 +73,8 @@ class MyWindow(QMainWindow, main_window):
     def kwos_on_login(self, stockItemList, conditionList):
         #종목 리스트
         self.stockItemList = stockItemList
+
+        print(conditionList)
 
         model = QStandardItemModel()
         self.stockItemListView.setModel(model)
