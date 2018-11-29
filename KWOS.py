@@ -287,7 +287,7 @@ class KiwoomOS:
     #SendOrder 호출
     def sendBuyOrder(self, account, itemCode, quantity, price, priceType):
         self.kiwoom.dynamicCall("SendOrder(QString, QString, QString, int, QString, int, int, QString, QString)",
-                                '신규매수주문',
+                                ['신규매수주문',
                                 self._getScreenNumber(),
                                 account,
                                 1,
@@ -295,13 +295,13 @@ class KiwoomOS:
                                 quantity,
                                 price,
                                 self._getOrderPriceType(priceType),
-                                ''
+                                '']
                                 )
 
     # SendOrder 호출
     def sendSellOrder(self, account, itemCode, quantity, price, priceType):
         self.kiwoom.dynamicCall("SendOrder(QString, QString, QString, int, QString, int, int, QString, QString)",
-                                '신규매도주문',
+                                ['신규매도주문',
                                 self._getScreenNumber(),
                                 account,
                                 2,
@@ -309,7 +309,7 @@ class KiwoomOS:
                                 quantity,
                                 price,
                                 self._getOrderPriceType(priceType),
-                                ''
+                                '']
                                 )
 
     def _getOrderPriceType(self, type):
