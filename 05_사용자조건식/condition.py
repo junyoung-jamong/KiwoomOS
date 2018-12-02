@@ -3,6 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5 import uic
 from PyQt5.QAxContainer import *
 from kiwoomOS.kwos import *
+#from KWOS import KiwoomOS
 
 main_window = uic.loadUiType("main_window.ui")[0]
 
@@ -33,12 +34,18 @@ class MyWindow(QMainWindow, main_window):
 
         self.conditionListView.selectionModel().selectionChanged.connect(self.selection_changed)
 
-    def kwos_onReceiveCondition(self, condition, itemList):
+    def kwos_onReceiveCondition(self, condition, item_list):
         conditionName = condition['조건식명']
         if conditionName not in self.conditionResult:
-            self.conditionResult[conditionName] = itemList
+            self.conditionResult[conditionName] = item_list
 
-        self.setConditionResult(itemList)
+        self.setConditionResult(item_list)
+
+        code_list = []
+        for item in item_list:
+            code = item['종목코드']
+            code_list.append(code)
+        self.kwos.addRealData(code_list)  # 검색 종목 리스트 실시간 등록
 
     def kwos_OnReceiveRealCondition(self, condition, strCode, type):
         conditionName = condition['조건식명']

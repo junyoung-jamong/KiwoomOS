@@ -449,7 +449,8 @@ class KiwoomOS:
         if scrNum in self._realScrNumDict:
             if len(self._realScrNumDict[scrNum]) >= 100:
                 self._realScreenNumber += 1
-                scrNum = str(self._realScrNumDict)
+                scrNum = str(self._realScreenNumber)
+                self._realScrNumDict[scrNum] = []
         else:
             self._realScrNumDict[scrNum] = []
 
