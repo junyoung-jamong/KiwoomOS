@@ -3,6 +3,7 @@ from PyQt5.QtCore import QWaitCondition
 from PyQt5.QtCore import QMutex
 from PyQt5.QtCore import pyqtSignal
 
+
 class KiwoomOS:
     stockItemList = []
     conditionList = []
@@ -16,26 +17,32 @@ class KiwoomOS:
     inputValueList = []
 
     def __init__(self, kiwoom):
+        self.RequestNames = RequestNames()
         self.kiwoom = kiwoom
-        self.kiwoom.OnEventConnect.connect(self._api_onEventConnect) #로그인 결과 Event
-        self.kiwoom.OnReceiveConditionVer.connect(self._api_onReceiveConditionVer) #조건식 리스트 수신 Event
-        self.kiwoom.OnReceiveTrData.connect(self._api_onReceiveTrData) #TR요청 수신결과 Event
-        self.kiwoom.OnReceiveRealData.connect(self._api_onReceiveRealData) #실시간 데이터 수신 Event
-        self.kiwoom.OnReceiveChejanData.connect(self._api_onReceiveChejanData) #체결 잔고 수신 Event
-        self.kiwoom.OnReceiveTrCondition.connect(self._api_onReceiveTrCondition) #조건검색 결과 Event
-        self.kiwoom.OnReceiveRealCondition.connect(self._api_onReceiveRealCondition) #실시간 조건 수신 Event
+        self.kiwoom.OnEventConnect.connect(self._api_onEventConnect)  # 로그인 결과 Event
+        self.kiwoom.OnReceiveConditionVer.connect(self._api_onReceiveConditionVer)  # 조건식 리스트 수신 Event
+        self.kiwoom.OnReceiveTrData.connect(self._api_onReceiveTrData)  # TR요청 수신결과 Event
+        self.kiwoom.OnReceiveRealData.connect(self._api_onReceiveRealData)  # 실시간 데이터 수신 Event
+        self.kiwoom.OnReceiveChejanData.connect(self._api_onReceiveChejanData)  # 체결 잔고 수신 Event
+        self.kiwoom.OnReceiveTrCondition.connect(self._api_onReceiveTrCondition)  # 조건검색 결과 Event
+        self.kiwoom.OnReceiveRealCondition.connect(self._api_onReceiveRealCondition)  # 실시간 조건 수신 Event
 
         self.kiwoom.dynamicCall("KOA_Functions(QString, QString)", "SetConditionSearchFlag", "AddPrice")
 
-        self._onLogin_observer = [] #로그인 event
-        self._onReceiveTr_observer = [] #TR수신 event
-        self._onReceiveReal_observer = [] #실시간 체결 수신 event
-        self._onReceiveRealExt_observer = [] #실시간 데이터 수신 event
-        self._onAcceptedOrder_observer = [] #주문 접수 event
-        self._onConcludedOrder_observer = [] #주문 체결 수신 event
-        self._onReceiveBalance_observer = [] #잔고 수신 event
-        self._onReceiveCondition_observer = [] #조건검색 수식 event
-        self._onReceiveRealCondition_observer = [] #실시간 조건검색 수신 event
+        # 키움 이벤트 옵저버
+        self._onLogin_observer = []  # 로그인 event
+        self._onReceiveTr_observer = []  # TR수신 event
+        self._onReceiveReal_observer = []  # 실시간 체결 수신 event
+        self._onReceiveRealExt_observer = []  # 실시간 데이터 수신 event
+        self._onAcceptedOrder_observer = []  # 주문 접수 event
+        self._onConcludedOrder_observer = []  # 주문 체결 수신 event
+        self._onReceiveBalance_observer = []  # 잔고 수신 event
+        self._onReceiveCondition_observer = []  # 조건검색 수식 event
+        self._onReceiveRealCondition_observer = []  # 실시간 조건검색 수신 event
+
+        # 사용자 편의 함수 옵저버
+        self._onReceiveAccountState_observer = []  # 계좌현황 수신 event
+        self._onReceiveConditionPrice_observer = []  # 조건식 편입/이탈 종목 가격정보 수신 event
 
         self.requestManager = _RequestManager()
         self.requestManager.threadEvent.connect(self._tr_request_task)
@@ -67,7 +74,7 @@ class KiwoomOS:
                     '종목상태': self.kiwoom.dynamicCall("GetMasterStockState(QString", code)
                 })
 
-            self.kiwoom.dynamicCall("GetConditionLoad()") #사용자 조건식 리스트 요청
+            self.kiwoom.dynamicCall("GetConditionLoad()")  # 사용자 조건식 리스트 요청
 
     def _api_onReceiveConditionVer(self, lRet, msg):
         conditions = self.kiwoom.dynamicCall("GetConditionNameList()")
@@ -89,9 +96,45 @@ class KiwoomOS:
 
     # TR데이터 수신
     def _api_onReceiveTrData(self, sScrNo, sRQName, sTrcode, sRecordName, sPrevNext, nDataLength, sErrorCode,
-                            sMessage, sSplmMsg):
-        for event_func in self._onReceiveTr_observer:
-            event_func(sRQName, sTrcode, sPrevNext)
+                             sMessage, sSplmMsg):
+        if sRQName == self.RequestNames.사용자계좌현황:
+            account_state, balance_list = self._get_AccountState_TrData(sTrcode, sRQName)
+            self._accountState = account_state
+            self._balanceList = balance_list
+            for event_func in self._onReceiveAccountState_observer:
+                event_func(account_state, balance_list)
+        elif self.RequestNames.편입이탈종목정보요청 in sRQName:
+            rq = sRQName.split(';')
+            if len(rq) >= 2:
+                conditionName = rq[1]
+                code = self.getTrData(sTrcode, "종목코드")
+                price = self.getTrData(sTrcode, "현재가")
+                if self._is_represented_int(price):
+                    price = abs(int(price))
+
+                data = {
+                    '시가': self.getTrData(sTrcode, "시가"),
+                    '고가': self.getTrData(sTrcode, "시가"),
+                    '저가': self.getTrData(sTrcode, "시가"),
+                    '상한가': self.getTrData(sTrcode, "상한가"),
+                    '하한가': self.getTrData(sTrcode, "하한가"),
+                    '기준가': self.getTrData(sTrcode, "기준가"),
+                    '전일대비': self.getTrData(sTrcode, "전일대비"),
+                    '등락률': self.getTrData(sTrcode, "등락율"),
+                    '거래량': self.getTrData(sTrcode, "거래량"),
+                    '거래대비': self.getTrData(sTrcode, "거래대비"),
+                    '250최고가': self.getTrData(sTrcode, "250최고"),
+                    '250최저가': self.getTrData(sTrcode, "250최저"),
+                    '유통주식': self.getTrData(sTrcode, "유통주식"),
+                    '유통비율': self.getTrData(sTrcode, "유통비율")
+                }
+
+                for event_func in self._onReceiveConditionPrice_observer:
+                    event_func(code, conditionName, price, data)
+
+        else:
+            for event_func in self._onReceiveTr_observer:
+                event_func(sRQName, sTrcode, sPrevNext)
 
     # 실시간 데이터 수신
     def _api_onReceiveRealData(self, sCode, sRealType, sRealData):
@@ -227,14 +270,14 @@ class KiwoomOS:
         for event_func in self._onReceiveRealCondition_observer:
             event_func(condition, strCode, type)
 
-    #SetInputValue 호출
+    # SetInputValue 호출
     def setInput(self, key, value):
         self.inputValueList.append({
             'key': key,
             'value': value
         })
 
-    #CommRqData 호출
+    # CommRqData 호출
     def requestTr(self, rqName, trCode, prevNext=0):
         task = {
             'inputValueList': self.inputValueList,
@@ -248,19 +291,19 @@ class KiwoomOS:
         self.inputValueList = []
         self.requestManager.requestTrTask(task)
 
-    #GetCommData 호출
+    # GetCommData 호출
     def getTrData(self, trCode, key, index=0):
         return self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", trCode, "", index, key).strip()
 
-    #GetRepeatCnt 호출
+    # GetRepeatCnt 호출
     def getTrCount(self, trCode):
         return self.kiwoom.dynamicCall("GetRepeatCnt(QString, QString)", trCode, "")
 
-    #GetCommRealData 호출
+    # GetCommRealData 호출
     def getRealData(self, itemCode, fId):
         return self.kiwoom.dynamicCall("GetCommRealData(QString, int)", itemCode, fId)
 
-    #실시간 데이터 등록 관리
+    # 실시간 데이터 등록 관리
     def addRealData(self, codeList):
         if self.getLoginState():
             if isinstance(codeList, str):
@@ -277,39 +320,41 @@ class KiwoomOS:
 
                     if len(self._realScrNumDict[scrNum]) == 100:
                         requestList = requestList[:-1]
-                        self.kiwoom.dynamicCall("SetRealReg(QString, QString, QString, QString)", scrNum, requestList, fidList, '1')
+                        self.kiwoom.dynamicCall("SetRealReg(QString, QString, QString, QString)", scrNum, requestList,
+                                                fidList, '1')
                         requestList = ''
 
             if len(requestList) > 0:
                 requestList = requestList[:-1]
-                self.kiwoom.dynamicCall("SetRealReg(QString, QString, QString, QString)", scrNum, requestList, fidList, '1')
+                self.kiwoom.dynamicCall("SetRealReg(QString, QString, QString, QString)", scrNum, requestList, fidList,
+                                        '1')
 
-    #SendOrder 호출
+    # SendOrder 호출
     def sendBuyOrder(self, account, itemCode, quantity, price, priceType):
         self.kiwoom.dynamicCall("SendOrder(QString, QString, QString, int, QString, int, int, QString, QString)",
                                 ['신규매수주문',
-                                self._getScreenNumber(),
-                                account,
-                                1,
-                                itemCode,
-                                quantity,
-                                price,
-                                self._getOrderPriceType(priceType),
-                                '']
+                                 self._getScreenNumber(),
+                                 account,
+                                 1,
+                                 itemCode,
+                                 quantity,
+                                 price,
+                                 self._getOrderPriceType(priceType),
+                                 '']
                                 )
 
     # SendOrder 호출
     def sendSellOrder(self, account, itemCode, quantity, price, priceType):
         self.kiwoom.dynamicCall("SendOrder(QString, QString, QString, int, QString, int, int, QString, QString)",
                                 ['신규매도주문',
-                                self._getScreenNumber(),
-                                account,
-                                2,
-                                itemCode,
-                                quantity,
-                                price,
-                                self._getOrderPriceType(priceType),
-                                '']
+                                 self._getScreenNumber(),
+                                 account,
+                                 2,
+                                 itemCode,
+                                 quantity,
+                                 price,
+                                 self._getOrderPriceType(priceType),
+                                 '']
                                 )
 
     def _getOrderPriceType(self, type):
@@ -342,7 +387,7 @@ class KiwoomOS:
         elif type == '장후시간외종가':
             return '81'
 
-    #SendCondition 호출
+    # SendCondition 호출
     def startConditionMonitoring(self, name, index):
         if name in self._conditionMonitoringState:
             self._conditionMonitoringState[name]['state'] = True
@@ -357,7 +402,7 @@ class KiwoomOS:
         if name in self._conditionMonitoringState:
             self._conditionMonitoringState[name]['state'] = False
 
-    #SendConditionStop 호출
+    # SendConditionStop 호출
     def removeConditionMonitoring(self, name, index):
         if name in self._conditionMonitoringState:
             self.kiwoom.dynamicCall("SendConditionStop(QString, QString, int)",
@@ -366,27 +411,27 @@ class KiwoomOS:
                                     index)
             del self._conditionMonitoringState[name]
 
-    #종목리스트 요청
+    # 종목리스트 요청
     def getStockItemList(self):
         if self.getLoginState():
             return self.stockItemList
 
-    #종목명 요청
+    # 종목명 요청
     def getStockItemName(self, itemCode):
         if self.getLoginState():
             return self.kiwoom.dynamicCall("GetMasterCodeName(QString)", itemCode)
 
-    #조건식리스트 요청
+    # 조건식리스트 요청
     def getConditionList(self):
         if self.getLoginState():
             return self.conditionList
 
-    #로그인창 호출
+    # 로그인창 호출
     def login(self):
         if self.kiwoom is not None:
             self.kiwoom.dynamicCall("CommConnect()")
 
-    #로그인 연결상태 여부
+    # 로그인 연결상태 여부
     def getLoginState(self):
         if self.kiwoom is not None:
             state = self.kiwoom.dynamicCall("GetConnectState()")
@@ -397,7 +442,7 @@ class KiwoomOS:
         else:
             return False
 
-    #계좌번호 리스트
+    # 계좌번호 리스트
     def getAccountList(self):
         if self.getLoginState():
             accounts = self.kiwoom.dynamicCall("GetLoginInfo(QString)", "ACCLIST")
@@ -405,19 +450,19 @@ class KiwoomOS:
             accountList = accounts.split(";")
             return accountList
 
-    #사용자 아이디
+    # 사용자 아이디
     def getUserId(self):
         if self.getLoginState():
-            userId = self.kiwoom.dynamicCall("GetLoginInfo(QString)", "USER_ID" )
+            userId = self.kiwoom.dynamicCall("GetLoginInfo(QString)", "USER_ID")
             return userId
 
-    #사용자 이름
+    # 사용자 이름
     def getUserName(self):
         if self.getLoginState():
             userName = self.kiwoom.dynamicCall("GetLoginInfo(QString)", "USER_NAME")
             return userName
 
-    #서버 구분(모의투자 or 실서버)
+    # 서버 구분(모의투자 or 실서버)
     def getServerState(self):
         if self.getLoginState():
             server = self.kiwoom.dynamicCall("GetLoginInfo(QString)", "GetServerGubun").strip()
@@ -426,12 +471,40 @@ class KiwoomOS:
             else:
                 return '실서버'
 
-    #계좌비밀번호 설정 창 호출
+    # 계좌비밀번호 설정 창 호출
     def showAccountWindow(self):
         if self.getLoginState():
             self.kiwoom.dynamicCall("KOA_Functions(QString, QString)", "ShowAccountWindow", "")
 
-    #화면번호 생성
+    # 조건식명으로 조건식인덱스 호출
+    def getConditionIndexByName(self, conditionName):
+        if hasattr(self, 'conditionList'):
+            if len(self.conditionList) > 0:
+                condition = next((item for item in self.conditionList if item["조건식명"] == conditionName), None)
+                if condition is not None:
+                    return condition['조건식인덱스']
+                else:
+                    return -1
+            else:
+                return -1
+        else:
+            print("사용자 조건검색식을 찾을 수 없습니다.")
+
+    # 조건식인덱스로 조건식명 호출
+    def getConditionNameByIndex(self, conditionIndex):
+        if hasattr(self, 'conditionList'):
+            if len(self.conditionList) > 0:
+                condition = next((item for item in self.conditionList if item["조건식인덱스"] == conditionIndex), None)
+                if condition is not None:
+                    return condition['조건식명']
+                else:
+                    return ''
+            else:
+                return ''
+        else:
+            print("사용자 조건검색식을 찾을 수 없습니다.")
+
+    # 화면번호 생성
     def _getScreenNumber(self):
         if self._screenNumber > 5000:
             self._screenNumber = 1000
@@ -439,7 +512,7 @@ class KiwoomOS:
         self._screenNumber += 1
         return str(self._screenNumber)
 
-    #실시간등록 화면번호
+    # 실시간등록 화면번호
     def _getRealScreenNumber(self):
         if self._realScreenNumber > 9200:
             self._realScreenNumber = 9000
@@ -456,7 +529,14 @@ class KiwoomOS:
 
         return scrNum
 
-    #Add/Remove Event
+    def _is_represented_int(self, s):
+        try:
+            int(s)
+            return True
+        except ValueError:
+            return False
+
+    # Add/Remove Event
     def addOnLogin(self, func):
         if func not in self._onLogin_observer:
             self._onLogin_observer.append(func)
@@ -529,6 +609,149 @@ class KiwoomOS:
         if func in self._onReceiveRealCondition_observer:
             self._onReceiveRealCondition_observer.remove(func)
 
+    ##Util functions - 사용자 편의 함수##
+
+    # 사용자계좌현황조회
+    def requestAccountState(self, account, without_delisting=False):
+        if self.getLoginState():
+            if isinstance(account, str):
+                self.setInput("계좌번호", account)
+                self.setInput("비밀번호", "")
+                if without_delisting:
+                    self.setInput("상장폐지조회구분", "1")
+                else:
+                    self.setInput("상장폐지조회구분", "0")
+                self.setInput("계좌번호", account)
+
+                self.requestTr(self.RequestNames.사용자계좌현황, self.RequestNames.사용자계좌현황_코드)
+
+    def getAccountState(self):
+        if hasattr(self, '_accountState'):
+            return self._accountState
+        else:
+            print("requestAccountState()를 먼저 호출하십시오.")
+
+    def getBalanceList(self):
+        if hasattr(self, '_balanceList'):
+            return self._balanceList
+        else:
+            print("requestAccountState()를 먼저 호출하십시오.")
+
+    def _get_AccountState_TrData(self, sTrcode, sRQName):
+        예수금 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0, "예수금").strip()
+        d2추정예수금 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                          "D+2추정예수금").strip()
+        유가잔고평가액 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                          "유가잔고평가액").strip()
+        예탁자산평가액 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                          "예탁자산평가액").strip()
+        총매입금액 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                        "총매입금액").strip()
+        추정예탁자산 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                         "추정예탁자산").strip()
+        매도담보대출금 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                          "매도담보대출금").strip()
+        당일투자원금 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                         "당일투자원금").strip()
+        당월투자원금 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                         "당월투자원금").strip()
+        누적투자원금 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                         "누적투자원금").strip()
+        당일투자손익 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                         "당일투자손익").strip()
+        당월투자손익 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                         "당월투자손익").strip()
+        누적투자손익 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                         "누적투자손익").strip()
+        당일손익률 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                        "당일손익율").strip()
+        당월손익률 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                        "당월손익율").strip()
+        누적손익률 = self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, 0,
+                                        "누적손익율").strip()
+
+        account_state = {
+            '예수금': 예수금,
+            'd2추정예수금': d2추정예수금,
+            '유가잔고평가액': 유가잔고평가액,
+            '예탁자산평가액': 예탁자산평가액,
+            '총매입금액': 총매입금액,
+            '추정예탁자산': 추정예탁자산,
+            '매도담보대출금': 매도담보대출금,
+            '당일투자원금': 당일투자원금,
+            '당월투자원금': 당월투자원금,
+            '누적투자원금': 누적투자원금,
+            '당일투자손익': 당일투자손익,
+            '당월투자손익': 당월투자손익,
+            '누적투자손익': 누적투자손익,
+            '당일손익률': 당일손익률,
+            '당월손익률': 당월손익률,
+            '누적손익률': 누적손익률
+        }
+
+        cnt = self.kiwoom.dynamicCall("GetRepeatCnt(QString, QString)", sTrcode, sRQName)
+        balance_list = []
+        for i in range(cnt):
+            balance = {
+                '종목코드': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                "종목코드").strip(),
+                '종목명': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                               "종목명").strip(),
+                '보유수량': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                "보유수량").strip(),
+                '평균단가': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                "평균단가").strip(),
+                '현재가': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                               "현재가").strip(),
+                '평가금액': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                "평가금액").strip(),
+                '손익금액': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                "손익금액").strip(),
+                '손익률': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                               "손익율").strip(),
+                '대출일': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                               "대출일").strip(),
+                '매입금액': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                "매입금액").strip(),
+                '결제잔고': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                "결제잔고").strip(),
+                '전일매수수량': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                  "전일매수수량").strip(),
+                '전일매도수량': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                  "전일매도수량").strip(),
+                '금일매수수량': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                  "금일매수수량").strip(),
+                '금일매도수량': self.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrcode, sRQName, i,
+                                                  "금일매도수량").strip()
+            }
+            balance_list.append(balance)
+        return account_state, balance_list
+
+    def addOnReceiveAccountState(self, func):
+        if func not in self._onReceiveAccountState_observer:
+            self._onReceiveAccountState_observer.append(func)
+
+    def removeOnReceiveAccountState(self, func):
+        if func in self._onReceiveAccountState_observer:
+            self._onReceiveAccountState_observer.remove(func)
+
+    # 조건검색식 편입/이탈 종목 가격 요청
+    def requestConditionPrice(self, code, conditionName):
+        if self.getLoginState():
+            self.setInput("종목코드", code)
+            rqName = self.RequestNames.편입이탈종목정보요청 + ';' + conditionName
+            self.requestTr(rqName, self.RequestNames.편입이탈종목정보요청_코드)
+
+    def addOnReceiveConditionPrice(self, func):
+        if func not in self._onReceiveConditionPrice_observer:
+            self._onReceiveConditionPrice_observer.append(func)
+
+    def removeOnReceiveConditionPrice(self, func):
+        if func in self._onReceiveConditionPrice_observer:
+            self._onReceiveConditionPrice_observer.remove(func)
+
+
+# Tr 요청 루퍼 클래스
 class _RequestManager(QThread):
     threadEvent = pyqtSignal(dict)
     taskQueue = []
@@ -563,3 +786,11 @@ class _RequestManager(QThread):
         self.taskQueue.insert(0, task)
         self.mutex.unlock()
 
+
+# KWOS 자체 사용자구분명 관리 클래스
+class RequestNames():
+    def __init__(self):
+        self.사용자계좌현황 = "__KWOS__사용자계좌현황"
+        self.사용자계좌현황_코드 = "OPW00004"
+        self.편입이탈종목정보요청 = "__KWOS__편입이탈종목정보요청"
+        self.편입이탈종목정보요청_코드 = "opt10001"

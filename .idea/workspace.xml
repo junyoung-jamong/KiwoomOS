@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a325586f-a367-4c5b-a980-fa147a800338" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/05_사용자조건식/condition.py" beforeDir="false" afterPath="$PROJECT_DIR$/05_사용자조건식/condition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KWOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/KWOS.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kiwoomOS/kwos.py" beforeDir="false" afterPath="$PROJECT_DIR$/kiwoomOS/kwos.py" afterDir="false" />
     </list>
@@ -16,34 +16,35 @@
     <session id="832539818">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
-          <entry key="project.open.time.0" value="4" />
-          <entry key="project.open.time.1" value="4" />
+          <entry key="project.closed" value="17" />
+          <entry key="project.open.time.0" value="5" />
+          <entry key="project.open.time.1" value="6" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.open.time.5" value="2" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="17" />
+          <entry key="py" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="17" />
+          <entry key="Python" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="541" />
+          <entry key="py" value="4395" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="541" />
+          <entry key="Python" value="4395" />
         </counts>
       </usages-collector>
     </session>
@@ -53,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/05_사용자조건식/condition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-540">
-              <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+            <state relative-caret-position="100">
+              <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -62,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/03_실시간데이터/realdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="380">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
                 <marker date="1542937707151" expanded="true" signature="867:965" ph="..." />
@@ -77,12 +78,53 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/KWOS.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+                <marker date="1544106736897" expanded="true" signature="22804:22809" ph="..." />
+                <marker date="1544106736897" expanded="true" signature="27345:27350" ph="..." />
+                <marker date="1544106736897" expanded="true" signature="34188:34193" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kiwoomOS/kwos.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/02_데이터조회/requestTr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+            <state relative-caret-position="120">
+              <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/06_사용자편의함수/convinient.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+                <marker date="1544107011239" expanded="true" signature="958:967" ph="..." />
+                <marker date="1544107011239" expanded="true" signature="1259:1265" ph="..." />
               </folding>
             </state>
           </provider>
@@ -99,36 +141,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>model</find>
-      <find>조건식명</find>
-      <find>select</find>
-      <find>addOnReceiveCondition</find>
-      <find>_onReceiveCondition_observer</find>
-      <find>conditionSearchingTableView</find>
-      <find>range</find>
-      <find>getMasterCode</find>
-      <find>kwos_onReceiveCondition</find>
-      <find>OnReceiveRealCondition</find>
-      <find>_onReceiveRealCondition_observer</find>
-      <find>ReceiveRea</find>
-      <find>realData</find>
-      <find>sendB</find>
-      <find>s</find>
-      <find>_getOrderPriceType</find>
-      <find>onReceive</find>
-      <find>_onAcceptedOrder_observer</find>
-      <find>conditionItemTableWidget</find>
       <find>CommConnect</find>
       <find>OnEventConnect</find>
-      <find>_api_onEventConnect</find>
       <find>_onReceiveReal_observer</find>
       <find>_api_onReceiveRealData</find>
       <find>addREalDAta</find>
-      <find>_api_onReceiveConditionVer</find>
       <find>_onLogin_observer</find>
       <find>self.conditionList</find>
       <find>send</find>
       <find>_getRealScreenNumber</find>
+      <find>__KWOS__사용자계좌현황</find>
+      <find>getTr</find>
+      <find>getRe</find>
+      <find>사용자계좌현황</find>
+      <find>_onReceiveTr_observer</find>
+      <find>_get_AccountState_TrData</find>
+      <find>balance_list</find>
+      <find>account_state</find>
+      <find>_accountState</find>
+      <find>_api_</find>
+      <find>_api_onEventConnect</find>
+      <find>_api_onReceiveConditionVer</find>
+      <find>getU</find>
+      <find>_api_onREceiveT</find>
+      <find>_api_onReceiveTrData</find>
+      <find>_onReceiveAccountState_observer</find>
+      <find>addOnReceiveConditionPrice</find>
+      <find>removeOnReceiveConditionPrice</find>
+      <find>on_re</find>
+      <find>_onReceiveConditionPrice_observer</find>
+      <find>_is_represented_int</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -146,18 +188,19 @@
         <option value="$PROJECT_DIR$/00_샘플프로그램/main.py" />
         <option value="$PROJECT_DIR$/04_주문및잔고/order.py" />
         <option value="$PROJECT_DIR$/03_실시간데이터/realdata.py" />
-        <option value="$PROJECT_DIR$/02_데이터조회/requestTr.py" />
-        <option value="$PROJECT_DIR$/KWOS.py" />
         <option value="$PROJECT_DIR$/05_사용자조건식/condition.py" />
+        <option value="$PROJECT_DIR$/KWOS.py" />
         <option value="$PROJECT_DIR$/kiwoomOS/kwos.py" />
+        <option value="$PROJECT_DIR$/06_사용자편의함수/convinient.py" />
+        <option value="$PROJECT_DIR$/02_데이터조회/requestTr.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1939" />
-    <option name="height" value="1049" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -167,7 +210,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -175,20 +217,11 @@
               <item name="KiwoomOS" type="b2602c69:ProjectViewProjectNode" />
               <item name="KiwoomOS" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="KiwoomOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KiwoomOS" type="462c0819:PsiDirectoryNode" />
-              <item name="05_사용자조건식" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KiwoomOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KiwoomOS" type="462c0819:PsiDirectoryNode" />
-              <item name="kiwoomOS" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -212,7 +245,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.condition">
+  <component name="RunManager" selected="Python.convinient">
     <configuration name="condition" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JMKWLibrary" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -234,7 +267,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="login" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="convinient" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JMKWLibrary" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -242,11 +275,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/01_로그인" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/06_사용자편의함수" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/01_로그인/login.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/06_사용자편의함수/convinient.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -320,18 +353,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.main (1)" />
-      <item itemvalue="Python.login" />
       <item itemvalue="Python.requestTr" />
       <item itemvalue="Python.condition" />
       <item itemvalue="Python.realdata" />
+      <item itemvalue="Python.convinient" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.convinient" />
+        <item itemvalue="Python.requestTr" />
         <item itemvalue="Python.condition" />
         <item itemvalue="Python.realdata" />
-        <item itemvalue="Python.requestTr" />
         <item itemvalue="Python.main (1)" />
-        <item itemvalue="Python.login" />
       </list>
     </recent_temporary>
   </component>
@@ -350,15 +383,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12491738" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12491738" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872927" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.21732955" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39914772" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41335228" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.390625" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -449,51 +481,69 @@
     <entry file="file://$PROJECT_DIR$/04_주문및잔고/order.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/02_데이터조회/requestTr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/05_사용자조건식/condition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-540">
-          <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+        <state relative-caret-position="100">
+          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KWOS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="452" column="49" lean-forward="true" selection-start-line="452" selection-start-column="49" selection-end-line="452" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kiwoomOS/kwos.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="452" column="49" lean-forward="true" selection-start-line="452" selection-start-column="49" selection-end-line="452" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/03_실시간데이터/realdata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="380">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
             <marker date="1542937707151" expanded="true" signature="867:965" ph="..." />
             <marker date="1542937707151" expanded="true" signature="1296:1297" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KWOS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <marker date="1544106736897" expanded="true" signature="22804:22809" ph="..." />
+            <marker date="1544106736897" expanded="true" signature="27345:27350" ph="..." />
+            <marker date="1544106736897" expanded="true" signature="34188:34193" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kiwoomOS/kwos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02_데이터조회/requestTr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/06_사용자편의함수/convinient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1544107011239" expanded="true" signature="958:967" ph="..." />
+            <marker date="1544107011239" expanded="true" signature="1259:1265" ph="..." />
           </folding>
         </state>
       </provider>
