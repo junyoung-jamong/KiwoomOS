@@ -129,7 +129,7 @@ if __name__ == "__main__":
 --------
 #### 실시간 종목 등록
 ```
-kwos.setInput(key, value)
+kwos.addRealData(codelist)
 ```
 
 #### 실시간 종목 체결 데이터 Event 등록
