@@ -357,6 +357,62 @@ class KiwoomOS:
                                  '']
                                 )
 
+    # SendOrder 호출
+    def cancelBuyOrder(self, account, itemCode, quantity, price, priceType, originalOrderNum):
+        self.kiwoom.dynamicCall("SendOrder(QString, QString, QString, int, QString, int, int, QString, QString)",
+                                ['신규매수주문',
+                                 self._getScreenNumber(),
+                                 account,
+                                 3,
+                                 itemCode,
+                                 quantity,
+                                 price,
+                                 self._getOrderPriceType(priceType),
+                                 originalOrderNum]
+                                )
+
+    # SendOrder 호출
+    def cancelSellOrder(self, account, itemCode, quantity, price, priceType, originalOrderNum):
+        self.kiwoom.dynamicCall("SendOrder(QString, QString, QString, int, QString, int, int, QString, QString)",
+                                ['신규매도주문',
+                                 self._getScreenNumber(),
+                                 account,
+                                 4,
+                                 itemCode,
+                                 quantity,
+                                 price,
+                                 self._getOrderPriceType(priceType),
+                                 originalOrderNum]
+                                )
+
+    # SendOrder 호출
+    def updateBuyOrder(self, account, itemCode, quantity, price, priceType, originalOrderNum):
+        self.kiwoom.dynamicCall("SendOrder(QString, QString, QString, int, QString, int, int, QString, QString)",
+                                ['신규매수주문',
+                                 self._getScreenNumber(),
+                                 account,
+                                 5,
+                                 itemCode,
+                                 quantity,
+                                 price,
+                                 self._getOrderPriceType(priceType),
+                                 originalOrderNum]
+                                )
+
+    # SendOrder 호출
+    def updateSellOrder(self, account, itemCode, quantity, price, priceType, originalOrderNum):
+        self.kiwoom.dynamicCall("SendOrder(QString, QString, QString, int, QString, int, int, QString, QString)",
+                                ['신규매도주문',
+                                 self._getScreenNumber(),
+                                 account,
+                                 6,
+                                 itemCode,
+                                 quantity,
+                                 price,
+                                 self._getOrderPriceType(priceType),
+                                 originalOrderNum]
+                                )
+
     def _getOrderPriceType(self, type):
         if type == '지정가':
             return '00'
